@@ -8,17 +8,24 @@ namespace MoodAnayzer
 {
     public class AnalyzeMood
     {
-        string message;
-        public AnalyzeMood(string message)
+        string mood;
+        public AnalyzeMood(string mood)
         {
-            this.message = message;
+            this.mood = mood;
         }
         public string getMood()
         {
-            if (this.message.Contains("Sad"))
-                return "Sad";
-            else
+            try
+            {
+                if (this.mood.Contains("Sad"))
+                    return "Sad";
+                else
+                    return "Happy";
+            }
+            catch (NullReferenceException)
+            {
                 return "Happy";
+            }
         }
     }
 }
