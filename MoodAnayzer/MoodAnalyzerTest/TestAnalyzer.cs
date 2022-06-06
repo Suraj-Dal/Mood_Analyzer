@@ -5,15 +5,17 @@ namespace MoodAnalyzerTest
         [Test]
         public void GivenMoodSad_AnalyzeMood_ReturnSadMood()
         {
-            MoodAnayzer.AnalyzeMood mood = new MoodAnayzer.AnalyzeMood();
-            string actualResult = mood.getMood("I am in Sad mood");
+            string message = "I am in Sad mood";
+            MoodAnayzer.AnalyzeMood mood = new MoodAnayzer.AnalyzeMood(message);
+            string actualResult = mood.getMood();
             Assert.AreEqual("Sad", actualResult);
         }
         [Test]
         public void GivenMoodAny_AnalyzeMood_ReturnHappyMood()
         {
-            MoodAnayzer.AnalyzeMood mood = new MoodAnayzer.AnalyzeMood();
-            string actualResult = mood.getMood("I am in Any mood");
+            string message = "I am in Happy Mood";
+            MoodAnayzer.AnalyzeMood mood = new MoodAnayzer.AnalyzeMood(message);
+            string actualResult = mood.getMood();
             Assert.AreEqual("Happy", actualResult);
         }
     }
