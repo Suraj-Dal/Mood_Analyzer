@@ -19,12 +19,33 @@ namespace MoodAnalyzerTest
             Assert.AreEqual("Happy", actualResult);
         }
         [Test]
-        public void GivenNull_AnalyzeMood_ReturnHappyMood()
+        public void GivenNull_AnalyzeMood_HandleNullException_ReturnNullMood()
         {
-            string message = null;
-            MoodAnayzer.AnalyzeMood mood = new MoodAnayzer.AnalyzeMood(message);
-            string actualResult = mood.getMood();
-            Assert.AreEqual("Happy", actualResult);
+            try
+            {
+                string message = null;
+                MoodAnayzer.AnalyzeMood mood = new MoodAnayzer.AnalyzeMood(message);
+                string actualResult = mood.getMood();
+            }
+            catch (MoodAnayzer.AnalyzerException exc)
+            {
+                Assert.AreEqual("Mood is null", exc.Message);
+            }
         }
+        [Test]
+        public void GivenEmpty_AnalyzeMood_HandleEmptyException_ReturnEmptyMood()
+        {
+            try
+            {
+                string message = "";
+                MoodAnayzer.AnalyzeMood mood = new MoodAnayzer.AnalyzeMood(message);
+                string actualResult = mood.getMood();
+            }
+            catch (MoodAnayzer.AnalyzerException exc)
+            {
+                Assert.AreEqual("Mood can not be Empty", exc.Message);
+            }
+        }
+
     }
 }
